@@ -16,7 +16,6 @@ function isiRow(value) {
     .replace("#HARIKULIAH#", value.mata_kuliah.jadwal_kuliah.hari ? value.mata_kuliah.jadwal_kuliah.hari : "#HARIKULIAH")
     .replace("#JAMMASUK#", value.mata_kuliah.jadwal_kuliah.hari ? value.mata_kuliah.jadwal_kuliah.jam_masuk : "#JAMMASUK")
     .replace("#JAMKELUAR#", value.mata_kuliah.jadwal_kuliah.hari ? value.mata_kuliah.jadwal_kuliah.jam_keluar : "#JAMMKELUAR")
-    .replace("#RUANGAN#", value.mata_kuliah.ruang_kuliah.nama_ruang ? value.mata_kuliah.ruang_kuliah.nama_ruang : "#RUANGAN")
     .replace("#WARNA#", getRandomColor())
     .replace(/#WARNALOGO#/g, getRandomColorName());
   addInner("iniTabel", content);
