@@ -14,7 +14,7 @@ export let isiTabel = `
             </div>
         </div>
     </th>
-    <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-center">#STATUS#</th>
+    <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-left">#STATUS#</th>
     <th class="whitespace-nowrap px-4 bg-white text-left">
         <div class="flex items-center -m-2">
             <div class="w-auto p-2">
