@@ -9,7 +9,7 @@ function isiRow(value) {
     .replace("#NAMA#", value.biodata.nama)
     .replace("#NPM#", value.biodata.npm)
     .replace("#STATUS#", value.kehadiran == "masuk" ? value.kehadiran : "menghilang")
-    .replace("#MATKUL#", value.mata_kuliah.nama_matkul)
+    // .replace("#MATKUL#", value.mata_kuliah.nama_matkul)
     // .replace("#DOSEN#", value.mata_kuliah.dosen_pengajar.nama_dosen ? value.mata_kuliah.dosen_pengajar.nama_dosen : "dsn")
     // .replace("#HARIKULIAH#", value.mata_kuliah.jadwal_kuliah.hari ? value.mata_kuliah.jadwal_kuliah.hari : "#HARIKULIAH")
     // .replace("#JAMMASUK#", value.mata_kuliah.jadwal_kuliah.jam_masuk ? value.mata_kuliah.jadwal_kuliah.jam_masuk : "#JAMMASUK")
