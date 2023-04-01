@@ -8,8 +8,6 @@ function isiRow(value) {
   let content = isiTabel
     .replace("#NAMA#", value.biodata.nama)
     .replace("#NPM#", value.biodata.npm)
-    .replace("#KELAS#", value.biodata.nama_kelas.nama_kelas ? value.biodata.nama_kelas.nama_kelas : "kls")
-    .replace("#JURUSAN#", value.biodata.jurusan.nama_prodi ? value.biodata.jurusan.nama_prodi : "prd" )
     .replace("#STATUS#", value.kehadiran == "masuk" ? value.kehadiran : "menghilang")
     .replace("#MATKUL#", value.mata_kuliah.nama_matkul ? value.mata_kuliah.nama_matkul : "mtkl")
     .replace("#DOSEN#", value.mata_kuliah.dosen_pengajar.nama_dosen ? value.mata_kuliah.dosen_pengajar.nama_dosen : "dsn")
