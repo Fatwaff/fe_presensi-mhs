@@ -14,7 +14,7 @@ export let isiTabel = `
             </div>
         </div>
     </th>
-    <th class="whitespace-nowrap px-4 bg-white text-left">
+    <th class="whitespace-nowrap px-4 bg-white text-center">
         <div class="flex items-center -m-2">
             <div class="w-auto p-2">
                 <p class="text-xs font-semibold text-coolGray-800">#KELAS#</p>
@@ -22,8 +22,8 @@ export let isiTabel = `
             </div>
         </div>
     </th>
-    <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-left">#STATUS#</th>
-    <th class="whitespace-nowrap px-4 bg-white text-left">
+    <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-coolGray-800 text-center">#STATUS#</th>
+    <th class="whitespace-nowrap px-4 bg-white text-center">
         <div class="flex items-center -m-2">
             <div class="w-auto p-2">
                 <p class="text-xs font-semibold text-coolGray-800">#MATKUL#</p>
@@ -31,8 +31,8 @@ export let isiTabel = `
             </div>
         </div>
     </th>
-    <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-#col#-500 text-left">#HARIKULIAH#</th>
-    <th class="whitespace-nowrap px-4 bg-white text-left">
+    <th class="whitespace-nowrap px-4 bg-white text-sm font-medium text-#col#-500 text-center">#HARIKULIAH#</th>
+    <th class="whitespace-nowrap px-4 bg-white text-center">
     <div class="w-auto p-2">
         <p class="text-xs font-semibold text-coolGray-800">#JAMMASUK#</p>
         <p class="text-xs font-medium text-coolGray-500">#JAMKELUAR#</p>
