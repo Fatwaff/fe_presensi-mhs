@@ -8,12 +8,14 @@ function isiRow(value) {
   let content = isiTabel
     .replace("#NAMA#", value.biodata.nama)
     .replace("#NPM#", value.biodata.npm)
+    .replace("#KELAS#", value.biodata.namakelas.namakelas ? value.biodata.namakelas.namakelas : "#KELAS")
+    .replace("#JURUSAN#", value.biodata.jurusan.namaprodi ? value.biodata.jurusan.namaprodi : "#JURUSAN")
     .replace("#STATUS#", value.kehadiran == "masuk" ? value.kehadiran : "menghilang")
-    // .replace("#MATKUL#", value.mata_kuliah.nama_matkul)
-    // .replace("#DOSEN#", value.mata_kuliah.dosen_pengajar.nama_dosen ? value.mata_kuliah.dosen_pengajar.nama_dosen : "dsn")
-    // .replace("#HARIKULIAH#", value.mata_kuliah.jadwal_kuliah.hari ? value.mata_kuliah.jadwal_kuliah.hari : "#HARIKULIAH")
-    // .replace("#JAMMASUK#", value.mata_kuliah.jadwal_kuliah.jam_masuk ? value.mata_kuliah.jadwal_kuliah.jam_masuk : "#JAMMASUK")
-    // .replace("#JAMKELUAR#", value.mata_kuliah.jadwal_kuliah.jam_keluar ? value.mata_kuliah.jadwal_kuliah.jam_keluar : "#JAMMKELUAR")
+    .replace("#MATKUL#", value.matakuliah.namamatkul ? value.matakuliah.namamatkul : "#MATKUL")
+    .replace("#DOSEN#", value.matakuliah.dosenpengajar.namadosen ? value.matakuliah.dosenpengajar.namadosen : "#DOSEN")
+    .replace("#HARIKULIAH#", value.matakuliah.jadwalkuliah.hari ? value.matakuliah.jadwalkuliah.hari : "#HARIKULIAH")
+    .replace("#JAMMASUK#", value.matakuliah.jadwalkuliah.jammasuk ? value.matakuliah.jadwalkuliah.jammasuk : "#JAMMASUK")
+    .replace("#JAMKELUAR#", value.matakuliah.jadwalkuliah.jamkeluar ? value.matakuliah.jadwalkuliah.jamkeluar : "#JAMMKELUAR")
     .replace("#WARNA#", getRandomColor())
     .replace(/#WARNALOGO#/g, getRandomColorName());
   addInner("iniTabel", content);
