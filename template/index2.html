@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/tailwind/tailwind.min.css" />
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="../js/main.js"></script>
+    <script src="../js/activeTable.js"></script>
     <script type="module" src="../js/fetch.js"></script>
     <title>Presensi Mahasiswa</title>
   </head>
@@ -36,25 +37,25 @@
             <div class="col-span-12 sm:col-span-12 md:col-span-8 lg:col-span-8 xxl:col-span-8">
               <!-- Start Card List -->
               <div x-data="{ active: 1 }" class="bg-white p-4 rounded-xl shadow-xl flex items-center justify-center grid grid-cols-5 md:grid-cols-7">
-                <a href="#" class="flex space-x-2 items-center text-gray-400 m-auto" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 1 }" x-on:click.prevent="active = 1">
+                <a href="#" onclick="showPresensi()" class="flex space-x-2 items-center text-gray-400 m-auto" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 1 }" x-on:click.prevent="active = 1">
                   <p class="font-semibold text-sm">Presensi</p>
                 </a>
-                <a href="#" class="flex space-x-2 items-center text-gray-400 m-auto" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 2 }" x-on:click.prevent="active = 2">
+                <a href="#" onclick="showMahasiswa()" class="flex space-x-2 items-center text-gray-400 m-auto" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 2 }" x-on:click.prevent="active = 2">
                   <p class="font-semibold text-sm">Mhs</p>
                 </a>
-                <a href="#" class="flex space-x-2 items-center text-gray-400 m-auto" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 3 }" x-on:click.prevent="active = 3">
+                <a href="#" onclick="showKelas()" class="flex space-x-2 items-center text-gray-400 m-auto" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 3 }" x-on:click.prevent="active = 3">
                   <p class="font-semibold text-sm">Kelas</p>
                 </a>
-                <a href="#" class="flex space-x-2 items-center text-gray-400 m-auto" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 4 }" x-on:click.prevent="active = 4">
+                <a href="#" onclick="showMatkul()" class="flex space-x-2 items-center text-gray-400 m-auto" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 4 }" x-on:click.prevent="active = 4">
                   <p class="font-semibold text-sm">Matkul</p>
                 </a>
-                <a href="#" class="flex space-x-2 items-center text-gray-400 m-auto" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 5 }" x-on:click.prevent="active = 5">
+                <a href="#" onclick="showDosen()" class="flex space-x-2 items-center text-gray-400 m-auto" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 5 }" x-on:click.prevent="active = 5">
                   <p class="font-semibold text-sm">Dosen</p>
                 </a>
-                <a href="#" class="flex space-x-2 items-center text-gray-400 m-auto pt-2 md:pt-0" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 6 }" x-on:click.prevent="active = 6">
+                <a href="#" onclick="showProdi()" class="flex space-x-2 items-center text-gray-400 m-auto pt-2 md:pt-0" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 6 }" x-on:click.prevent="active = 6">
                   <p class="font-semibold text-sm">Prodi</p>
                 </a>
-                <a href="#" class="flex space-x-2 items-center text-gray-400 m-auto pt-2 md:pt-0" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 7 }" x-on:click.prevent="active = 7">
+                <a href="#" onclick="showRuangan()" class="flex space-x-2 items-center text-gray-400 m-auto pt-2 md:pt-0" x-bind:class="{'text-indigo-600 border-b-4 border-indigo-600': active === 7 }" x-on:click.prevent="active = 7">
                   <p class="font-semibold text-sm">Ruangan</p>
                 </a>
               </div>
@@ -64,10 +65,11 @@
               <!-- Start Card List -->
               <div class="bg-white p-4 rounded-xl shadow-xl items-center justify-center mt-1">
                 <div class="space-x-0 items-center">
-                  <p class="font-semibold text-base">Data Presensi</p>
-                  <div class="overflow-hidden border border-coolGray-100 rounded-md shadow-dashboard mt-2 ml-96">
+                  <p class="font-semibold text-base"></p>
+                  <div class="overflow-hidden border border-coolGray-100 rounded-md shadow-dashboard">
                     <div class="overflow-x-auto">
-                      <table class="w-full" id="iniTabel">
+                      <table class="w-full" id="iniTabelPresensi">
+                        <p class="font-semibold text-base ml-2 mt-2 mb-2">Data Presensi</p>
                         <tr class="whitespace-nowrap h-11 bg-coolGray-50 bg-opacity-80 border-b border-coolGray-100">
                           <th class="px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">
                             <div class="flex items-center">
@@ -79,6 +81,114 @@
                           <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Matkul & Dosen</th>
                           <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Hari Kuliah</th>
                           <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Jam Masuk & Keluar (WIB)</th>
+                          <th class="whitespace-nowrap font-semibold text-xs text-coolGray-500 uppercase text-center"></th>
+                        </tr>
+
+                        <!-- ISI TABEL DARI SINI (BUAT pada FILe tabel.js) -->
+
+                        <!-- ISI TABEL SAMPAI DISINI (BUAT pada FILE tabel.js) -->
+                      </table>
+                      <table class="w-full" id="iniTabelMahasiswa" style="display: none">
+                        <!-- <p class="font-semibold text-base ml-2 mt-2 mb-2">Data Mahasiswa</p> -->
+                        <tr class="whitespace-nowrap h-11 bg-coolGray-50 bg-opacity-80 border-b border-coolGray-100">
+                          <th class="px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">
+                            <div class="flex items-center">
+                              <p>Nama</p>
+                            </div>
+                          </th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">NPM</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Kelas</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Jurusan</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Fakultas</th>
+                          <th class="whitespace-nowrap font-semibold text-xs text-coolGray-500 uppercase text-center"></th>
+                        </tr>
+
+                        <!-- ISI TABEL DARI SINI (BUAT pada FILe tabel.js) -->
+
+                        <!-- ISI TABEL SAMPAI DISINI (BUAT pada FILE tabel.js) -->
+                      </table>
+                      <table class="w-full" id="iniTabelKelas" style="display: none">
+                        <!-- <p class="font-semibold text-base ml-2 mt-2 mb-2">Data Kelas</p> -->
+                        <tr class="whitespace-nowrap h-11 bg-coolGray-50 bg-opacity-80 border-b border-coolGray-100">
+                          <th class="px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">
+                            <div class="flex items-center">
+                              <p>Kode Kelas</p>
+                            </div>
+                          </th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Nama Kelas</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Kapasitas</th>
+                          <th class="whitespace-nowrap font-semibold text-xs text-coolGray-500 uppercase text-center"></th>
+                        </tr>
+
+                        <!-- ISI TABEL DARI SINI (BUAT pada FILe tabel.js) -->
+
+                        <!-- ISI TABEL SAMPAI DISINI (BUAT pada FILE tabel.js) -->
+                      </table>
+                      <table class="w-full" id="iniTabelProdi" style="display: none">
+                        <!-- <p class="font-semibold text-base ml-2 mt-2 mb-2">Data Prodi</p> -->
+                        <tr class="whitespace-nowrap h-11 bg-coolGray-50 bg-opacity-80 border-b border-coolGray-100">
+                          <th class="px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">
+                            <div class="flex items-center">
+                              <p>Nama Prodi</p>
+                            </div>
+                          </th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Ketua Prodi</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Fakultas</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Kapasitas</th>
+                          <th class="whitespace-nowrap font-semibold text-xs text-coolGray-500 uppercase text-center"></th>
+                        </tr>
+
+                        <!-- ISI TABEL DARI SINI (BUAT pada FILe tabel.js) -->
+
+                        <!-- ISI TABEL SAMPAI DISINI (BUAT pada FILE tabel.js) -->
+                      </table>
+                      <table class="w-full" id="iniTabelMatkul" style="display: none">
+                        <!-- <p class="font-semibold text-base ml-2 mt-2 mb-2">Data Matkul</p> -->
+                        <tr class="whitespace-nowrap h-11 bg-coolGray-50 bg-opacity-80 border-b border-coolGray-100">
+                          <th class="px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">
+                            <div class="flex items-center">
+                              <p>Nama, Kode, & SKS</p>
+                            </div>
+                          </th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Dosen Pengampu</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Hari Kuliah</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Jam Masuk & Keluar (WIB)</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Ruangan</th>
+                          <th class="whitespace-nowrap font-semibold text-xs text-coolGray-500 uppercase text-center"></th>
+                        </tr>
+
+                        <!-- ISI TABEL DARI SINI (BUAT pada FILe tabel.js) -->
+
+                        <!-- ISI TABEL SAMPAI DISINI (BUAT pada FILE tabel.js) -->
+                      </table>
+                      <table class="w-full" id="iniTabelDosen" style="display: none">
+                        <!-- <p class="font-semibold text-base ml-2 mt-2 mb-2">Data Dosen</p> -->
+                        <tr class="whitespace-nowrap h-11 bg-coolGray-50 bg-opacity-80 border-b border-coolGray-100">
+                          <th class="px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">
+                            <div class="flex items-center">
+                              <p>Nama Dosen</p>
+                            </div>
+                          </th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">NIK</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Bidang Studi</th>
+                          <th class="whitespace-nowrap font-semibold text-xs text-coolGray-500 uppercase text-center"></th>
+                        </tr>
+
+                        <!-- ISI TABEL DARI SINI (BUAT pada FILe tabel.js) -->
+
+                        <!-- ISI TABEL SAMPAI DISINI (BUAT pada FILE tabel.js) -->
+                      </table>
+                      <table class="w-full" id="iniTabelRuangan" style="display: none">
+                        <!-- <p class="font-semibold text-base ml-2 mt-2 mb-2">Data Ruangan</p> -->
+                        <tr class="whitespace-nowrap h-11 bg-coolGray-50 bg-opacity-80 border-b border-coolGray-100">
+                          <th class="px-4 font-semibold text-xs text-coolGray-500 uppercase text-left">
+                            <div class="flex items-center">
+                              <p>Nama Ruangan</p>
+                            </div>
+                          </th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Kapasitas</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Gedung</th>
+                          <th class="whitespace-nowrap px-4 font-semibold text-xs text-coolGray-500 uppercase text-center">Lantai</th>
                           <th class="whitespace-nowrap font-semibold text-xs text-coolGray-500 uppercase text-center"></th>
                         </tr>
 
